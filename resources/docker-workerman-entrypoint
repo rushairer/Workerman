@@ -7,12 +7,6 @@ if [ "`ls -A $PWD`" = "" ]; then
     echo "Starting..."
     tar cf - --one-file-system -C /usr/local/workerman . | tar xf -
     echo >&2 "Complete! Workman has been successfully copied to $PWD"
-    php start.php start -d
 fi
 
-# first arg is `-f` or `--some-option`
-if [ "${1#-}" != "$1" ]; then
-	set -- php "$@"
-fi
-
-exec "$@"
+exec php start.php start "$@"
